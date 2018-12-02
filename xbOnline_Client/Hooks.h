@@ -1,5 +1,6 @@
 #pragma once
 
+extern bool isSkinLoaded;
 extern bool ExecutudeChallenge;
 extern bool C_Mods;
 

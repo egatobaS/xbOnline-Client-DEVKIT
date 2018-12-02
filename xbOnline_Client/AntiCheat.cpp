@@ -20,7 +20,7 @@ int _Reset_LiveId(int instance)
 
 void AntiPasswordTheft()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	int randNum = rand() % 2;
 
 	*(int*)0x81BE739C = 0x3D2081D1;

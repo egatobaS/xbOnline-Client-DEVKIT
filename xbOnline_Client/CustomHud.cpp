@@ -13,16 +13,10 @@ Detour XuiElementBeginRenderDetour;
 Detour XuiSceneCreateDetour;
 Detour XuiSceneCreateDetour_Dash;
 Detour AllowRuntimeHostToRewriteLocatorDetour;
-#if defined(DEVKIT)
 
 HUDOffsets HUD_Addresses = { 0x913F12D4, 0x913E7498, 0x14, 0x913E72C0 };
 
-#else
 
-HUDOffsets HUD_Addresses = { 0x913F02CC, 0x913E64B8, 0x14, 0x913E62E0 };
-//HUDOffsets HUD_Addresses = { 0x913F0314, 0x913E6468, 0x14, 0x913E6290 };
-
-#endif
 
 HRESULT XamBuildResourceLocatorHook(HANDLE hModule, PWCHAR wModuleName, PWCHAR CONST cdModule, PWCHAR pBuffer, ULONG ddSize)
 {

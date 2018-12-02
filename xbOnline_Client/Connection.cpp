@@ -299,7 +299,7 @@ void PacketAuthentication(INCOMING_PACKET_HEADER* Pk)
 
 	HalSendSMCMessage(SMCMessageID, Pk->SMCVersion);
 
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 
 	int RandomeSize = rand() % 70 + 10;
 

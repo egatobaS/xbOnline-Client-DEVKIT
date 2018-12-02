@@ -1,5 +1,6 @@
 #include "main.h"
 
+bool isSkinLoaded = false;
 bool ExecutudeChallenge = false;
 
 char CrashData_1[0x500] = { 0 };
@@ -16,9 +17,7 @@ typedef int(*pKeDebugMonitorFunction)(EXCEPTION_POINTERS * ExceptionInfo);
 pKeDebugMonitorFunction KeDebugMonitorFunctionStub;
 
 HrBreakStub HrBreakOriginal;
-
 NetDll_XnpLogonSetChallengeResponseStub NetDll_XnpLogonSetChallengeResponseOriginal = (NetDll_XnpLogonSetChallengeResponseStub)0x81848528;
-
 
 DMHRAPI HrBreak(LPCSTR szCommand, LPSTR szResponse, DWORD cchResponse, PDM_CMDCONT pdmcc)
 {
@@ -294,28 +293,7 @@ void DumpCrash()
 	fclose(fp);
 }
 
-int KeDebugMonitorFunction(EXCEPTION_POINTERS * ExceptionInfo)
-{
 
-	sprintf(CrashData_1, "Exception Information\nException Address: 0x%08X\nException Code: 0x%08X\n\nGeneral Purpose Registers\nCR : 0x%016I64X XER: 0x%016I64X\nr0 : 0x%016I64X r1 : 0x%016I64X r2 : 0x%016I64X\nr3 : 0x%016I64X r4 : 0x%016I64X r5 : 0x%016I64X\nr6 : 0x%016I64X r7 : 0x%016I64X r8 : 0x%016I64X\nr9 : 0x%016I64X r10: 0x%016I64X r11: 0x%016I64X\n", ExceptionInfo->ExceptionRecord->ExceptionAddress, ExceptionInfo->ExceptionRecord->ExceptionCode, ExceptionInfo->ContextRecord->Cr, ExceptionInfo->ContextRecord->Xer, ExceptionInfo->ContextRecord->Gpr0, ExceptionInfo->ContextRecord->Gpr1, ExceptionInfo->ContextRecord->Gpr2, ExceptionInfo->ContextRecord->Gpr3, ExceptionInfo->ContextRecord->Gpr4, ExceptionInfo->ContextRecord->Gpr5, ExceptionInfo->ContextRecord->Gpr6, ExceptionInfo->ContextRecord->Gpr7, ExceptionInfo->ContextRecord->Gpr8, ExceptionInfo->ContextRecord->Gpr9, ExceptionInfo->ContextRecord->Gpr10, ExceptionInfo->ContextRecord->Gpr11);
-	sprintf(CrashData_2, "r12: 0x%016I64X r13: 0x%016I64X r14: 0x%016I64X\nr15: 0x%016I64X r16: 0x%016I64X r17: 0x%016I64X\nr18: 0x%016I64X r19: 0x%016I64X r20: 0x%016I64X\nr21: 0x%016I64X r22: 0x%016I64X r23: 0x%016I64X\nr24: 0x%016I64X r25: 0x%016I64X r26: 0x%016I64X\nr27: 0x%016I64X r28: 0x%016I64X r29: 0x%016I64X\nr30: 0x%016I64X r31: 0x%016I64X\n\n", ExceptionInfo->ContextRecord->Gpr12, ExceptionInfo->ContextRecord->Gpr13, ExceptionInfo->ContextRecord->Gpr14, ExceptionInfo->ContextRecord->Gpr15, ExceptionInfo->ContextRecord->Gpr16, ExceptionInfo->ContextRecord->Gpr17, ExceptionInfo->ContextRecord->Gpr18, ExceptionInfo->ContextRecord->Gpr19, ExceptionInfo->ContextRecord->Gpr20, ExceptionInfo->ContextRecord->Gpr21, ExceptionInfo->ContextRecord->Gpr22, ExceptionInfo->ContextRecord->Gpr23, ExceptionInfo->ContextRecord->Gpr24, ExceptionInfo->ContextRecord->Gpr25, ExceptionInfo->ContextRecord->Gpr26, ExceptionInfo->ContextRecord->Gpr27, ExceptionInfo->ContextRecord->Gpr28, ExceptionInfo->ContextRecord->Gpr29, ExceptionInfo->ContextRecord->Gpr30, ExceptionInfo->ContextRecord->Gpr31);
-	sprintf(CrashData_3, "Control Registers\nMSR: 0x%08X IAR :  0x%08X\nLR : 0x%08X CTR :  0x%08X\n\nCall Stack\n0x%08X (Exception Address)\n0x%08X (Link Register)\n\n", ExceptionInfo->ContextRecord->Msr, ExceptionInfo->ContextRecord->Iar, ExceptionInfo->ContextRecord->Lr, ExceptionInfo->ContextRecord->Ctr, ExceptionInfo->ExceptionRecord->ExceptionAddress, ExceptionInfo->ContextRecord->Lr);
-
-	HANDLE hThread1 = 0; DWORD threadId1 = 0;
-	ExCreateThread(&hThread1, 0x100000, &threadId1, (VOID*)XapiThreadStartup, (LPTHREAD_START_ROUTINE)DumpCrash, 0, 0x2);
-	XSetThreadProcessor(hThread1, 4);
-	ResumeThread(hThread1);
-	CloseHandle(hThread1);
-
-	XLaunchNewImage(NULL, NULL);
-
-	return KeDebugMonitorFunctionStub(ExceptionInfo);
-}
-
-
-
-bool isLastTitleCSGO = false, isLastTitleTF2 = false;
-bool isDevkit = false;
 
 void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 {
@@ -327,8 +305,6 @@ void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 
 	if (ExecutionId == 0) return;
 
-
-#if defined(DEVKIT)
 	if ((!wcscmp(ModuleHandle->BaseDllName.Buffer, L"xshell.xex")))
 	{
 		wchar_t* XboxDev = L"%s@blasts.pw";
@@ -340,41 +316,35 @@ void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 
 		*(int*)(0x817A69CC) = 0x60000000;
 	}
-#endif	
 
-#if defined(DEVKIT)
+	if ((!wcscmp(ModuleHandle->BaseDllName.Buffer, L"huduiskin.xex")))
+		isSkinLoaded = true;
 
-#else
 	if ((!wcscmp(ModuleHandle->BaseDllName.Buffer, L"hud.xex")))
 	{
 		if (xb_custom_xui)
 			XuiSceneCreateDetour.HookFunction("hud.xex", MODULE_XAM, 855, (DWORD)xuiz_s::xam_s::XuiSceneCreate);
 	}
-
+	
 	if (!wcscmp(ModuleHandle->BaseDllName.Buffer, L"dash.xex"))
 	{
 		char* hazz = "Hazz is a Theif. Everything he has is stolen. Fax.";
+	
 		hazz[0] = 0;
+	
 		DbgPrint(hazz);
+	
 		if (xb_custom_xui)
 		{
 			xuiz.xam.HookRuntimeDashFunctions();
-
+	
 			if (GetHandle((void*)DashBaseAddr, (PHANDLE)&dashHandle))
 				XuiElementBeginRender_Orig = (XuiElementBeginRender_t)XuiElementBeginRenderDetour.HookFunction((DWORD)ResolveFunction_0(dashHandle, 0x28D3), (DWORD)XuiElementBeginRender_hook);
-			//PatchInJump_2(0x921E7A10, (DWORD*)xuiz_s::xam_s::XuiSceneCreate, false);
-			//XuiSceneCreateDetour_Dash.HookFunction("dash.xex", MODULE_XAM, 855, (DWORD)xuiz_s::xam_s::XuiSceneCreate);
-			//XuiSceneCreateDetour_Dash.HookFunction(0x921E7A10, (DWORD)xuiz_s::xam_s::XuiSceneCreate_Dash);
 		}
 	}
-#endif	
-
 
 	switch (ExecutionId->TitleID)
 	{
-
-	
-	
 	case 0x415608FC:
 	{
 		while (!isFirst) Sleep(1);
@@ -382,11 +352,8 @@ void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 		if (((ExecutionId->Version & 0x0000FF00) >> 8) == 17)
 		{
 			isChallengeMultiplayer = (ModuleHandle->TimeDateStamp == 0x544F01BE);
-
 			InitGhosts();
-
 		}
-
 		break;
 	}
 
@@ -395,7 +362,6 @@ void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 		while (!isFirst) Sleep(1);
 
 		if (((ExecutionId->Version & 0x0000FF00) >> 8) == 17) {
-
 			isChallengeMultiplayer = (ModuleHandle->TimeDateStamp == 0x55C2C3C7);
 			InitAW();
 		}
@@ -449,13 +415,9 @@ void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 		break;
 	}
 
-
-
 	case  0x41560855:
 	{
 		while (!isFirst) Sleep(1);
-
-
 		if (((ExecutionId->Version & 0x0000FF00) >> 8) == 11 || (((ExecutionId->Version & 0x0000FF00) >> 6) != 0))
 		{
 			isChallengeMultiplayer = (ModuleHandle->TimeDateStamp == 0x4E542876);
@@ -465,18 +427,13 @@ void HookXexLoad(PLDR_DATA_TABLE_ENTRY ModuleHandle)
 				*(int*)(0x824FA18C) = 0x60000000;
 				*(int*)0x822562D4 = 0x48000020;
 			}
-
 		}
-
 		break;
 	}
-
-
 	default:
 	{
 		break;
 	}
-
 	}
 }
 

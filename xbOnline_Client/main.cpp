@@ -187,8 +187,6 @@ void GetSessionKey()
 
 	Sleep(1000);
 
-#if defined(DEVKIT)
-#else
 	bool hasInit = false;
 	if (xb_custom_xui && !hasInit)
 	{
@@ -200,7 +198,6 @@ void GetSessionKey()
 		CloseHandle(hThread1);
 		hasInit = true;
 	}
-#endif
 
 	if (!g_GotSessionKey)
 	{
@@ -311,7 +308,6 @@ void RegisterFunctions()
 	Tramps->RegisterFunction((int)PatchModuleImport, PatchModuleImport_Function);
 	Tramps->RegisterFunction((int)GetCPUKey, GetCPUKey_Function);
 	Tramps->RegisterFunction((int)xbCreateBoxKey, xbCreateBoxKey_Function);
-	Tramps->RegisterFunction((int)ExecuteCode, ExecuteCode_Function);
 	Tramps->RegisterFunction((int)memcpy, memcpy_Function);
 }
 
@@ -351,8 +347,6 @@ BOOL WINAPI DllMain(HANDLE ModuleHandle, unsigned int fdwReason, LPVOID lpReserv
 		MmDbgReadCheckOriginal = (MmDbgReadCheck_t)MmDbgReadCheckDetour.HookFunction((DWORD)ResolveFunction("xboxkrnl.exe", 427), (DWORD)MmDbgReadCheckHook);
 		Tramps->CallFunction(PatchModuleImport_Function, (int)"xbdm.xex", (int)MODULE_KERNEL, 191, (int)MmIsAddressValidHook, false);
 		Tramps->CallFunction(PatchModuleImport_Function, (int)"xbdm.xex", (int)MODULE_KERNEL, 427, (int)MmDbgReadCheckHook, false);
-
-		RemoveFromList(ModuleHandle);
 	}
 	else if (fdwReason == DLL_PROCESS_DETACH) 
 	{

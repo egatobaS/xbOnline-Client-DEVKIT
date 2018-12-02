@@ -1,24 +1,5 @@
 #pragma once
 
-//#if defined(DEVKIT)
-//
-//#define Out_IP	"54.39.46.189"
-//#define PORT 28326
-//
-////New Ip & Port
-//#define Out_IP_BK "54.39.46.189"
-//#define PORT_BK 28326
-//
-//#else
-//
-//#define Out_IP	"137.74.107.242"
-//#define PORT 28326
-//
-////New Ip & Port
-//#define Out_IP_BK "140.82.62.123"
-//#define PORT_BK 28326
-//
-//#endif
 
 extern char Out_IP[0x20];
 #define PORT 28326
@@ -26,8 +7,6 @@ extern char Out_IP[0x20];
 //New Ip & Port
 extern char Out_IP_BK[0x20];
 #define PORT_BK 28326
-
-
 
 
 enum CLIENT_AUTH_STATUS : char

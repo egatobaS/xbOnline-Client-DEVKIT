@@ -21,6 +21,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+DEVKIT/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -59,6 +60,10 @@ artifacts/
 *.sbr
 *.tlb
 *.tli
+*.exe
+*.xex
+*.tlog
+*.xdb
 *.tlh
 *.tmp
 *.tmp_proj

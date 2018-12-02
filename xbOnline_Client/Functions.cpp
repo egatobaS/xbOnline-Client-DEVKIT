@@ -1334,40 +1334,7 @@ void xbCreateBoxKey(long long xbBoxRequestID, unsigned char* out)
 
 	unsigned char* Key = (unsigned char*)malloc(0xC0);
 
-	memset(Key, 0x33, 0xC0);
-
-	for (int i = 0; i < 11; i++)
-	{
-		long long Fuse = HvPeekQWORD(0x8000020000020000 + (i * 0x200));
-
-		Tramps->CallFunction(memcpy_Function, (int)Key + (i * 8), (int)&Fuse, 8, 0, false);
-		Tramps->CallFunction(memcpy_Function, (int)Key + 0x58 + (i * 8), (int)&Fuse, 8, 0, false);
-	}
-
-	Key[0xB1] = XboxHardwareInfo->NumberOfProcessors;
-	Key[0xB2] = XboxHardwareInfo->PCIBridgeRevisionID;
-	Key[0xB3] = (unsigned char)XboxHardwareInfo->BldrMagic;
-	Key[0xB9] = HvPeekBYTE(0x30);
-	Key[0xBA] = HvPeekBYTE(0x25);
-
-	Tramps->CallFunction(memcpy_Function, (int)Key + 0xB4, (int)0x8E03AA55, 5, 0, false);
-
-	unsigned char xorValue = Key[0x32];
-
-	for (int i = 0; i < 0xC0; i++)
-	{
-		if (Key[i] <= 0)
-			Key[i] = (0xFF - Key[0xBA]);
-		else
-			Key[i] ^= xorValue;
-	}
-
-	for (int i = 0; i < 0xC0; i += 0x10)
-	{
-		XeCryptSha(Key + i, 0x10, NULL, NULL, NULL, NULL, Key + i, 0x10);
-		XeCryptSha(Key + i, 0x5, NULL, NULL, NULL, NULL, Key + i, 0x5);
-		XeCryptSha(Key + i, 0x2, (unsigned char*)&temp, 8, NULL, NULL, Key + i, 0x10);
-	}
+	memset(Key, 0xFF, 0xC0);
 
 	XeCryptRc4(Key, 0x10, Key, 0xC0);
 
@@ -2019,7 +1986,7 @@ void getKeyvaultLife()
 	tryagain:
 
 		FILETIME fTime = GetFileTime("xbOnline:\\KV.bin");
-		int currentTime = time(0);
+		int currentTime = (unsigned int)time(NULL);
 
 		if (attemptCount < 4)
 		{

@@ -3,23 +3,34 @@
 xuiz_s xuiz;
 LPCWSTR xuiz_s::xam_s::szxbOnlineSkin;
 HXUIOBJ obj = 0;
-int(*Xam_XuiSceneCreate_)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene) = (int(*)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene))0x817C4198;
-HRESULT(*Xam_XuiLoadVisualFromBinary_)(LPCWSTR szResourcePath, LPCWSTR szPrefix) = (HRESULT(*)(LPCWSTR szResourcePath, LPCWSTR szPrefix))0x817C5B00;
-HRESULT(*Xam_XuiElementAddChild_)(HXUIOBJ hObj, HXUIOBJ hChild) = (HRESULT(*)(HXUIOBJ hObj, HXUIOBJ hChild))0x817BC448;
-BOOL(*Xam_XuiHandleIsValid_)(HXUIOBJ hObj) = (BOOL(*)(HXUIOBJ hObj))0x817AE250;
-HRESULT(*Xam_XuiLoadVisualFromBinary)(LPCWSTR szResourcePath, LPCWSTR szPrefix) = (HRESULT(*)(LPCWSTR szResourcePath, LPCWSTR szPrefix))0x817C5B00;
-void(*Xam_XuiFreeVisuals)(LPCWSTR szPrefix) = (void(*)(LPCWSTR szPrefix))0x817C59B0;
-HRESULT(*Xam_XuiTextElementSetText)(HXUIOBJ hObj, LPCWSTR szText) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szText))0x817C09D8;
-int(*Xam_XuiSceneCreate)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene) = (int(*)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene))0x817C4198;
-HRESULT(*Xam_XuiElementGetChildById)(HXUIOBJ hObj, LPCWSTR szId, HXUIOBJ *phChild) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szId, HXUIOBJ *phChild))0x817BCFC0;
-void(*Xam_XUIElementPropVal_SetColorFromUint)(XUIElementPropVal* pThis, unsigned int val) = (void(*)(XUIElementPropVal* pThis, unsigned int val))0x817A8A90;
-HRESULT(*Xam_XuiObjectGetPropertyId)(HXUIOBJ hObj, LPCWSTR szPropName, DWORD *pdwId) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szPropName, DWORD *pdwId))0x817AE330;
-HRESULT(*Xam_XuiObjectSetProperty)(HXUIOBJ hObj, DWORD dwPropId, DWORD dwIndex, const XUIElementPropVal *pVal) = (HRESULT(*)(HXUIOBJ hObj, DWORD dwPropId, DWORD dwIndex, const XUIElementPropVal *pVal))0x817AE608;
-void(*Xam_XUIElementPropVal_Construct)(XUIElementPropVal* pThis) = (void(*)(XUIElementPropVal* pThis))0x817A88B8;
-void(*Xam_XUIElementPropVal_Destruct)(XUIElementPropVal* pThis) = (void(*)(XUIElementPropVal* pThis))0x817A9028;
-BOOL(*Xam_XuiHandleIsValid)(HXUIOBJ hObj) = (BOOL(*)(HXUIOBJ hObj))0x817AE250;
-HRESULT(*Xam_XuiElementAddChild)(HXUIOBJ hObj, HXUIOBJ hChild) = (HRESULT(*)(HXUIOBJ hObj, HXUIOBJ hChild))0x817BC448;
-HRESULT(*Xam_XUIElementPropVal_SetString)(XUIElementPropVal* pThis, LPCWSTR val) = (HRESULT(*)(XUIElementPropVal* pThis, LPCWSTR val))0x817A8AD8;
+
+//int(*Xam_XuiSceneCreate_)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene) = (int(*)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene))0x817C4198;
+//HRESULT(*Xam_XuiLoadVisualFromBinary_)(LPCWSTR szResourcePath, LPCWSTR szPrefix) = (HRESULT(*)(LPCWSTR szResourcePath, LPCWSTR szPrefix))0x817C5B00;
+//HRESULT(*Xam_XuiElementAddChild_)(HXUIOBJ hObj, HXUIOBJ hChild) = (HRESULT(*)(HXUIOBJ hObj, HXUIOBJ hChild))0x817BC448;
+//BOOL(*Xam_XuiHandleIsValid_)(HXUIOBJ hObj) = (BOOL(*)(HXUIOBJ hObj))0x817AE250;
+//HRESULT(*Xam_XuiTextElementSetText)(HXUIOBJ hObj, LPCWSTR szText) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szText))0x817C09D8;
+//HRESULT(*Xam_XuiElementGetChildById)(HXUIOBJ hObj, LPCWSTR szId, HXUIOBJ *phChild) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szId, HXUIOBJ *phChild))0x817BCFC0;
+//HRESULT(*Xam_XuiObjectGetPropertyId)(HXUIOBJ hObj, LPCWSTR szPropName, DWORD *pdwId) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szPropName, DWORD *pdwId))0x817AE330;
+//HRESULT(*Xam_XuiObjectSetProperty)(HXUIOBJ hObj, DWORD dwPropId, DWORD dwIndex, const XUIElementPropVal *pVal) = (HRESULT(*)(HXUIOBJ hObj, DWORD dwPropId, DWORD dwIndex, const XUIElementPropVal *pVal))0x817AE608;
+//void(*Xam_XUIElementPropVal_Construct)(XUIElementPropVal* pThis) = (void(*)(XUIElementPropVal* pThis))0x817A88B8;
+//void(*Xam_XUIElementPropVal_Destruct)(XUIElementPropVal* pThis) = (void(*)(XUIElementPropVal* pThis))0x817A9028;
+//HRESULT(*Xam_XUIElementPropVal_SetString)(XUIElementPropVal* pThis, LPCWSTR val) = (HRESULT(*)(XUIElementPropVal* pThis, LPCWSTR val))0x817A8AD8;
+//
+
+
+int(*Xam_XuiSceneCreate_)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene) = (int(*)(LPCWSTR szBasePath, LPCWSTR szScenePath, PVOID pvInitData, HXUIOBJ* phScene))0x8193B368;
+HRESULT(*Xam_XuiLoadVisualFromBinary_)(LPCWSTR szResourcePath, LPCWSTR szPrefix) = (HRESULT(*)(LPCWSTR szResourcePath, LPCWSTR szPrefix))0x8193D4B8;
+HRESULT(*Xam_XuiElementAddChild_)(HXUIOBJ hObj, HXUIOBJ hChild) = (HRESULT(*)(HXUIOBJ hObj, HXUIOBJ hChild))0x81931B20;
+BOOL(*Xam_XuiHandleIsValid_)(HXUIOBJ hObj) = (BOOL(*)(HXUIOBJ hObj))0x81942BA8;
+void(*Xam_XuiFreeVisuals)(LPCWSTR szPrefix) = (void(*)(LPCWSTR szPrefix))0x8193D350;
+HRESULT(*Xam_XuiTextElementSetText)(HXUIOBJ hObj, LPCWSTR szText) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szText))0x81937310;
+HRESULT(*Xam_XuiElementGetChildById)(HXUIOBJ hObj, LPCWSTR szId, HXUIOBJ *phChild) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szId, HXUIOBJ *phChild))0x819328A0;
+HRESULT(*Xam_XuiObjectGetPropertyId)(HXUIOBJ hObj, LPCWSTR szPropName, DWORD *pdwId) = (HRESULT(*)(HXUIOBJ hObj, LPCWSTR szPropName, DWORD *pdwId))0x81942D18;
+HRESULT(*Xam_XuiObjectSetProperty)(HXUIOBJ hObj, DWORD dwPropId, DWORD dwIndex, const XUIElementPropVal *pVal) = (HRESULT(*)(HXUIOBJ hObj, DWORD dwPropId, DWORD dwIndex, const XUIElementPropVal *pVal))0x81943060;
+void(*Xam_XUIElementPropVal_Construct)(XUIElementPropVal* pThis) = (void(*)(XUIElementPropVal* pThis))0x8192D950;
+void(*Xam_XUIElementPropVal_Destruct)(XUIElementPropVal* pThis) = (void(*)(XUIElementPropVal* pThis))0x8192E340;
+HRESULT(*Xam_XUIElementPropVal_SetString)(XUIElementPropVal* pThis, LPCWSTR val) = (HRESULT(*)(XUIElementPropVal* pThis, LPCWSTR val))0x8192DCB0;
+
 HRESULT(*Dash_XuiSendMessage)(HXUIOBJ hObj, XUIMessage *pMessage) = (HRESULT(*)(HXUIOBJ, XUIMessage *))0x921D3188;
 int(*XHttpConnectHook_Call)(int idk, PVOID hSession, const CHAR *pcszServerName, WORD nServerPort, DWORD dwFlags) = (int(*)(int idk, PVOID hSession, const CHAR *pcszServerName, WORD nServerPort, DWORD dwFlags))0x9293B3E4;
 int(*XHttpSendRequest_Call)(int idk, PVOID hRequest, const CHAR *pcszHeaders, DWORD dwHeadersLength, const VOID *lpOptional, DWORD dwOptionalLength, DWORD dwTotalLength, DWORD_PTR dwContext) = (int(*)(int idk, PVOID hRequest, const CHAR *pcszHeaders, DWORD dwHeadersLength, const VOID *lpOptional, DWORD dwOptionalLength, DWORD dwTotalLength, DWORD_PTR dwContext))0x9293B424;
@@ -129,7 +140,7 @@ bool xuiz_s::xam_s::XuiCheckboxIsChecked(HXUIOBJ hObj) {
 
 	__try {
 		((long(*)(...))xbscene.resolveFunction((HMODULE)xbscene.hXam, 0x35F))(xuiz.xam.XuiGetOuter(hObj), &msg);
-		return msgData.bChecked;
+		return (bool)msgData.bChecked;
 	}
 	__except (true) {
 		goto end;
@@ -220,7 +231,7 @@ bool xuiz_s::xam_s::XHttpSendRequestHook(PVOID hRequest, const CHAR *pcszHeaders
 		strcpy((PCHAR)pcszHeaders, "");
 		dwHeadersLength = 0;
 	}
-	bool Result = XHttpSendRequest_Call(1, hRequest, pcszHeaders, dwHeadersLength, lpOptional, dwOptionalLength, dwTotalLength, dwContext);
+	bool Result = (bool)XHttpSendRequest_Call(1, hRequest, pcszHeaders, dwHeadersLength, lpOptional, dwOptionalLength, dwTotalLength, dwContext);
 	return Result;
 }
 long xuiz_s::xam_s::XuiSceneCreate(LPCWSTR szBasePath, LPCWSTR szScenePath, void* pvInitData, HXUIOBJ* phScene) {
@@ -380,9 +391,6 @@ bool xuiz_s::xam_s::pressedElements(HXUIOBJ hObj, LPCWSTR szID) {
 				HXUIOBJ hCOD4Cheats, hWAWCheats, hMW2Cheats, hBO1Cheats, hMW3Cheats,
 					hBO2Cheats, hGhostCheats, hAWCheats, hBF4Cheats, hMW2Onhost;
 
-				bool bCOD4Cheats, bWAWCheats, bMW2Cheats, bBO1Cheats, bMW3Cheats,
-					bBO2Cheats, bGhostCheats, bAWCheats, bBF4Cheats, bMW2Onhost;
-
 				if (xuiz.xam.XuiElementGetChildById(hParent, COD4_CHEATS_CHECKBOX, &hCOD4Cheats) == 0)
 					bool(xuiz.xam.XuiCheckboxIsChecked(hCOD4Cheats)) ? SetIniBoolValue("Cheats", "xb_cheats_cod4", "true") : SetIniBoolValue("Cheats", "xb_cheats_cod4", "false");
 
@@ -422,9 +430,6 @@ bool xuiz_s::xam_s::pressedElements(HXUIOBJ hObj, LPCWSTR szID) {
 			else if (lstrcmpW(szParent, BYPASSES_TAB) == 0) {
 				HXUIOBJ hCOD4Bypass, hWAWBypass, hMW2Bypass, hBO1Bypass, hMW3Bypass,
 					hBO2Bypass, hGhostBypass, hAWBypass;
-
-				bool bCOD4Bypass, bWAWBypass, bMW2Bypass, bBO1Bypass, bMW3Bypass,
-					bBO2Bypass, bGhostBypass, bAWBypass;
 
 				if (xuiz.xam.XuiElementGetChildById(hParent, COD4_BYPASS_CHECKBOX, &hCOD4Bypass) == 0)
 					bool(xuiz.xam.XuiCheckboxIsChecked(hCOD4Bypass)) ? SetIniBoolValue("Bypasses", "xb_bypass_cod4", "true") : SetIniBoolValue("Cheats", "xb_bypass_cod4", "false");
@@ -474,7 +479,7 @@ bool xuiz_s::xam_s::initElements(HXUIOBJ hObj, LPCWSTR szID) {
 	__try {
 		if (lstrcmpW(szID, CHANGES_ELEMENT) == 0) {
 			std::wstring changes(L"xbOnline Update Notes | r38\n\n");
-
+			
 			// To add new lines is pretty self explanatory.
 			// Just append the wstring.
 
@@ -505,50 +510,50 @@ bool xuiz_s::xam_s::initElements(HXUIOBJ hObj, LPCWSTR szID) {
 			if (lstrcmpW(szParent, HUD_TAB) == 0) {
 				HXUIOBJ hCustomXui(0), hCustomNotify(0), hTimeRemaining(0), hRedeemHook(0);
 				if (XuiElementGetChildById(hParent, CUSTOM_XUI_CHECKBOX, &hCustomXui) == 0)
-					if (GetIniBoolValue("Hud", "xb_custom_xui") ? xuiz.xam.XuiCheckboxSetCheck(hCustomXui, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCustomXui, FALSE));
+					GetIniBoolValue("Hud", "xb_custom_xui") ? xuiz.xam.XuiCheckboxSetCheck(hCustomXui, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCustomXui, FALSE);
 
 				if (XuiElementGetChildById(hParent, CUSTOM_NOTIFY_CHECKBOX, &hCustomNotify) == 0)
-					if (GetIniBoolValue("Hud", "xb_custom_notify") ? xuiz.xam.XuiCheckboxSetCheck(hCustomNotify, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCustomNotify, FALSE));
+					GetIniBoolValue("Hud", "xb_custom_notify") ? xuiz.xam.XuiCheckboxSetCheck(hCustomNotify, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCustomNotify, FALSE);
 
 				if (XuiElementGetChildById(hParent, CUSTOM_TIME_CHECKBOX, &hTimeRemaining) == 0)
-					if (GetIniBoolValue("Hud", "xb_custom_time") ? xuiz.xam.XuiCheckboxSetCheck(hTimeRemaining, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hTimeRemaining, FALSE));
+					GetIniBoolValue("Hud", "xb_custom_time") ? xuiz.xam.XuiCheckboxSetCheck(hTimeRemaining, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hTimeRemaining, FALSE);
 
 				if (XuiElementGetChildById(hParent, REDEEM_HOOK_CHECKBOX, &hRedeemHook) == 0)
-					if (GetIniBoolValue("Hud", "xb_redeemhook") ? xuiz.xam.XuiCheckboxSetCheck(hRedeemHook, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hRedeemHook, FALSE));
+					GetIniBoolValue("Hud", "xb_redeemhook") ? xuiz.xam.XuiCheckboxSetCheck(hRedeemHook, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hRedeemHook, FALSE);
 			}
 			else if (lstrcmpW(szParent, CHEATS_TAB) == 0) {
 				HXUIOBJ hCOD4Cheats, hWAWCheats, hMW2Cheats, hBO1Cheats, hMW3Cheats,
 					hBO2Cheats, hGhostCheats, hAWCheats, hBF4Cheats, hMW2Onhost;
 
 				if (XuiElementGetChildById(hParent, COD4_CHEATS_CHECKBOX, &hCOD4Cheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_cod4") ? xuiz.xam.XuiCheckboxSetCheck(hCOD4Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCOD4Cheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_cod4") ? xuiz.xam.XuiCheckboxSetCheck(hCOD4Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCOD4Cheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, WAW_CHEATS_CHECKBOX, &hWAWCheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_waw") ? xuiz.xam.XuiCheckboxSetCheck(hWAWCheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hWAWCheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_waw") ? xuiz.xam.XuiCheckboxSetCheck(hWAWCheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hWAWCheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, MW2_CHEATS_CHECKBOX, &hMW2Cheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_mw2") ? xuiz.xam.XuiCheckboxSetCheck(hMW2Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW2Cheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_mw2") ? xuiz.xam.XuiCheckboxSetCheck(hMW2Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW2Cheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, BO1_CHEATS_CHECKBOX, &hBO1Cheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_bo1") ? xuiz.xam.XuiCheckboxSetCheck(hBO1Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO1Cheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_bo1") ? xuiz.xam.XuiCheckboxSetCheck(hBO1Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO1Cheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, MW3_CHEATS_CHECKBOX, &hMW3Cheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_mw3") ? xuiz.xam.XuiCheckboxSetCheck(hMW3Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW3Cheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_mw3") ? xuiz.xam.XuiCheckboxSetCheck(hMW3Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW3Cheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, BO2_CHEATS_CHECKBOX, &hBO2Cheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_bo2") ? xuiz.xam.XuiCheckboxSetCheck(hBO2Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO2Cheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_bo2") ? xuiz.xam.XuiCheckboxSetCheck(hBO2Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO2Cheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, GHOST_CHEATS_CHECKBOX, &hGhostCheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_ghosts") ? xuiz.xam.XuiCheckboxSetCheck(hGhostCheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hGhostCheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_ghosts") ? xuiz.xam.XuiCheckboxSetCheck(hGhostCheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hGhostCheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, AW_CHEATS_CHECKBOX, &hAWCheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_aw") ? xuiz.xam.XuiCheckboxSetCheck(hAWCheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hAWCheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_aw") ? xuiz.xam.XuiCheckboxSetCheck(hAWCheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hAWCheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, BF4_CHEATS_CHECKBOX, &hBF4Cheats) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_bf4") ? xuiz.xam.XuiCheckboxSetCheck(hBF4Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBF4Cheats, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_bf4") ? xuiz.xam.XuiCheckboxSetCheck(hBF4Cheats, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBF4Cheats, FALSE);
 
 				if (XuiElementGetChildById(hParent, MW2_ONHOST_CHECKBOX, &hMW2Onhost) == 0)
-					if (GetIniBoolValue("Cheats", "xb_cheats_mw2_onhost") ? xuiz.xam.XuiCheckboxSetCheck(hMW2Onhost, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW2Onhost, FALSE));
+					GetIniBoolValue("Cheats", "xb_cheats_mw2_onhost") ? xuiz.xam.XuiCheckboxSetCheck(hMW2Onhost, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW2Onhost, FALSE);
 
 			}
 			else if (lstrcmpW(szParent, BYPASSES_TAB) == 0) {
@@ -556,28 +561,28 @@ bool xuiz_s::xam_s::initElements(HXUIOBJ hObj, LPCWSTR szID) {
 					hBO2Bypass, hGhostBypass, hAWBypass;
 
 				if (XuiElementGetChildById(hParent, COD4_BYPASS_CHECKBOX, &hCOD4Bypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_cod4") ? xuiz.xam.XuiCheckboxSetCheck(hCOD4Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCOD4Bypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_cod4") ? xuiz.xam.XuiCheckboxSetCheck(hCOD4Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hCOD4Bypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, WAW_BYPASS_CHECKBOX, &hWAWBypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_waw") ? xuiz.xam.XuiCheckboxSetCheck(hWAWBypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hWAWBypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_waw") ? xuiz.xam.XuiCheckboxSetCheck(hWAWBypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hWAWBypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, MW2_BYPASS_CHECKBOX, &hMW2Bypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_mw2") ? xuiz.xam.XuiCheckboxSetCheck(hMW2Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW2Bypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_mw2") ? xuiz.xam.XuiCheckboxSetCheck(hMW2Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW2Bypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, BO1_BYPASS_CHECKBOX, &hBO1Bypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_bo1") ? xuiz.xam.XuiCheckboxSetCheck(hBO1Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO1Bypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_bo1") ? xuiz.xam.XuiCheckboxSetCheck(hBO1Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO1Bypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, MW3_BYPASS_CHECKBOX, &hMW3Bypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_mw3") ? xuiz.xam.XuiCheckboxSetCheck(hMW3Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW3Bypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_mw3") ? xuiz.xam.XuiCheckboxSetCheck(hMW3Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hMW3Bypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, BO2_BYPASS_CHECKBOX, &hBO2Bypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_bo2") ? xuiz.xam.XuiCheckboxSetCheck(hBO2Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO2Bypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_bo2") ? xuiz.xam.XuiCheckboxSetCheck(hBO2Bypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hBO2Bypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, GHOST_BYPASS_CHECKBOX, &hGhostBypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_ghosts") ? xuiz.xam.XuiCheckboxSetCheck(hGhostBypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hGhostBypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_ghosts") ? xuiz.xam.XuiCheckboxSetCheck(hGhostBypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hGhostBypass, FALSE);
 
 				if (XuiElementGetChildById(hParent, AW_BYPASS_CHECKBOX, &hAWBypass) == 0)
-					if (GetIniBoolValue("Bypasses", "xb_bypass_aw") ? xuiz.xam.XuiCheckboxSetCheck(hAWBypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hAWBypass, FALSE));
+					GetIniBoolValue("Bypasses", "xb_bypass_aw") ? xuiz.xam.XuiCheckboxSetCheck(hAWBypass, TRUE) : xuiz.xam.XuiCheckboxSetCheck(hAWBypass, FALSE);
 			}
 
 		}
@@ -669,31 +674,37 @@ void xuiz_s::xam_s::HudDisplay()
 }
 VOID PathHuds()
 {
-#if defined(DEVKIT)
-	Sleep(1000);
-#endif
+	while (!isSkinLoaded)
+		Sleep(10);
+
+	Sleep(3000);
+
+	DbgPrint("PathHuds loaded\n");
 
 	xbscene.init();
+
 	HANDLE hHudSkin;
+	
 	XexLoadImage("\\SystemRoot\\huduiskin.xex", 8, 0, &hHudSkin);
-
+	
 	PVOID pSectionData; DWORD dwSectionSize;
-	if (XGetModuleSection(hHudSkin, "skin", &pSectionData, &dwSectionSize)) {
-
+	
+	if (XGetModuleSection(hHudSkin, "skin", &pSectionData, &dwSectionSize)) 
+	{
 		BYTE xbOnlineBlue[3] = { 57,152,254 };
 		//BYTE xbOnlineBlue[3] = { 255,150,40 };
 		memcpy(((PBYTE)(pSectionData)+0x72DD), xbOnlineBlue, 3); //XuiButton
 		memcpy(((PBYTE)(pSectionData)+0x730D), xbOnlineBlue, 3); //XuiButton Press
-
+	
 		XuiFreeVisuals(NULL);
 		XuiLoadVisualFromBinary(charToWChar("section://%X,skin#skin.xur", hHudSkin), NULL);
-
+	
 		*(WORD*)((INT)(hHudSkin)+0x40) = 1;
 		XexUnloadImage(hHudSkin);
 	}
-
+	
 	Xam_XuiLoadVisualFromBinary_(charToWChar("section://%4X,UI#xbOnline.xur", ::g_hModule), NULL);
-
+	
 	XamBuildResourceLocator_Original = (XamBuildResourceLocator_t)XamBuildResourceLocatorDetour.HookFunction((DWORD)ResolveFunction(MODULE_XAM, 795), (DWORD)XamBuildResourceLocatorHook);
 
 }
